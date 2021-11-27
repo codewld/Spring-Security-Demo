@@ -3,9 +3,6 @@ package com.example.simpleexample.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * 主页和登录页面映射
- */
 @Controller
 public class HomeController {
     @RequestMapping({"/", "/index"})
