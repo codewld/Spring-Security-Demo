@@ -21,12 +21,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     VerifyCodeFilter verifyCodeFilter;
 
-    @Autowired
-    AuthenticationEntryPoint authenticationEntryPoint;
-
-    @Autowired
-    AccessDeniedHandler accessDeniedHandler;
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // 在内存中创建一个名为 "user" 的用户，密码为 "pwd"，拥有 "USER" 权限
@@ -43,10 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/login")
                     .successHandler(loginSuccessHandler)
                     .failureHandler(loginFailureHandler)
-                .and()
-                .exceptionHandling()
-                    .authenticationEntryPoint(authenticationEntryPoint)
-                    .accessDeniedHandler(accessDeniedHandler)
                 .and()
                 .csrf().disable()
                 .cors();
