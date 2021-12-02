@@ -19,49 +19,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class VerifyCodeFilter extends OncePerRequestFilter {
+public class VerifyCodeFilter extends GenericFilterBean {
 
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if ("POST".equalsIgnoreCase(request.getMethod()) && "/login".equals(request.getServletPath())) {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+
+        if ("POST".equalsIgnoreCase(req.getMethod()) && "/login".equals(req.getServletPath())) {
             try {
                 String code = request.getParameter("verify-code");
-                String trueCode = (String) request.getSession().getAttribute("verify-code");
+                String trueCode = (String) req.getSession().getAttribute("verify-code");
                 if (!StringUtils.hasLength(code))
                     throw new AuthenticationServiceException("Verification code cannot be empty!");
                 if (!trueCode.equalsIgnoreCase(code)) {
                     throw new AuthenticationServiceException("Verification code mismatch!");
                 }
             } catch (AuthenticationException e) {
-                authenticationFailureHandler.onAuthenticationFailure(request, response, e);
+                authenticationFailureHandler.onAuthenticationFailure(req, res, e);
                 return;
             }
         }
-        filterChain.doFilter(request, response);
-    }
+        chain.doFilter(request, response);
 
-    // @Override
-    // public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
-    //         throws IOException, ServletException {
-    //     System.out.println("coming");
-    //     HttpServletRequest request = (HttpServletRequest) req;
-    //     HttpServletResponse response = (HttpServletResponse) res;
-    //     System.out.println(request.getServletPath());
-    //     if ("POST".equalsIgnoreCase(request.getMethod()) && "/login".equals(request.getServletPath())) {
-    //         System.out.println("in");
-    //         String code = request.getParameter("verify-code");
-    //         String trueCode = (String) request.getSession().getAttribute("verify-code");
-    //         System.out.println(code);
-    //         System.out.println(trueCode);
-    //         if (!StringUtils.hasLength(code))
-    //             throw new AuthenticationServiceException("验证码不能为空!");
-    //         if (!trueCode.equalsIgnoreCase(code)) {
-    //             throw new AuthenticationServiceException("验证码错误!");
-    //         }
-    //     }
-    //     chain.doFilter(request, response);
-    // }
+    }
 }
