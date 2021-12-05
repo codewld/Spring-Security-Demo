@@ -22,17 +22,19 @@ public class JWTVerifyFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
 
-        String jwtToken = req.getHeader("authorization");
-        try {
-            DecodedJWT decode = JWT.require(Algorithm.HMAC256("111111")).build().verify(jwtToken);
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                    decode.getAudience().get(0),
-                    null,
-                    AuthorityUtils.commaSeparatedStringToAuthorityList(decode.getClaim("authorities").asString())
-            );
-            SecurityContextHolder.getContext().setAuthentication(token);
-        } catch (JWTVerificationException e) {
-            return;
+        if (!"/login".equals(req.getServletPath())) {
+            String jwtToken = req.getHeader("authorization");
+            try {
+                DecodedJWT decode = JWT.require(Algorithm.HMAC256("111111")).build().verify(jwtToken);
+                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+                        decode.getAudience().get(0),
+                        null,
+                        AuthorityUtils.commaSeparatedStringToAuthorityList(decode.getClaim("authorities").asString())
+                );
+                SecurityContextHolder.getContext().setAuthentication(token);
+            } catch (JWTVerificationException e) {
+                return;
+            }
         }
         filterChain.doFilter(request, response);
     }
