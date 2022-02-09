@@ -3,40 +3,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.example</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>Spring-Security-Demo</artifactId>
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>Spring-Security-Demo</artifactId>
+    <artifactId>CustomLoginController</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Spring-Security-Demo</name>
-    <description>Spring-Security-Demo</description>
-    <modules>
-        <module>Simple-Example</module>
-        <module>BackDoor</module>
-        <module>Authentication-DB</module>
-        <module>Authorization-DB</module>
-        <module>JSON</module>
-        <module>VerifyCode</module>
-        <module>JWT</module>
-        <module>CustomLoginController</module>
-    </modules>
-    <packaging>pom</packaging>
+    <name>CustomLoginController</name>
+    <description>CustomLoginController</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 
