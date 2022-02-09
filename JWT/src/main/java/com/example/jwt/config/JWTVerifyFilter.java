@@ -21,9 +21,8 @@ public class JWTVerifyFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-
-        if (!"/login".equals(req.getServletPath())) {
-            String jwtToken = req.getHeader("authorization");
+        String jwtToken = req.getHeader("authorization");
+        if (!"/login".equals(req.getServletPath()) && jwtToken != null) {
             try {
                 DecodedJWT decode = JWT.require(Algorithm.HMAC256("111111")).build().verify(jwtToken);
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
