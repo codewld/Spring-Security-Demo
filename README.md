@@ -5,14 +5,16 @@ Spring Security 在 Spring Boot 中的集成示例
 
 ## 说明
 
-* 通过模块的方式分为了多个示例，其中：
+* 其中：
   * Simple-Example：简单示例
   * BackDoor：身份验证 - 后门
   * Authentication-DB：身份验证 - 数据库
   * Authorization-DB：访问控制 - 数据库
   * JSON：JSON
+  * VerifyCode：验证码
+  * JWT：JWT
 * 默认登录密码为：pwd
-* 此项目为个人学习项目
+* 个人学习项目
 
 
 
@@ -22,4 +24,5 @@ Spring Security 在 Spring Boot 中的集成示例
 * [Spring Security 概述 - LD's BLOG](https://longda.wang/post/65b409a0.html)
 * [Spring Security 身份验证 - LD's BLOG](https://longda.wang/post/3c7c656a.html)
 * [Spring Security 访问控制 - LD's BLOG](https://longda.wang/post/dd3272bb.html)
+* [Spring Security JSON交互 - LD's BLOG](https://longda.wang/post/9bf0270e.html)
 
