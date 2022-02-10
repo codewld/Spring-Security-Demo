@@ -13,6 +13,7 @@ Spring Security 在 Spring Boot 中的集成示例
   * JSON：JSON
   * VerifyCode：验证码
   * JWT：JWT
+  * CustomLoginController：自定义登录接口
 * 默认登录密码为：pwd
 * 个人学习项目
 
