@@ -25,4 +25,5 @@ Spring Security 在 Spring Boot 中的集成示例
 * [Spring Security 身份验证 - LD's BLOG](https://longda.wang/post/3c7c656a.html)
 * [Spring Security 访问控制 - LD's BLOG](https://longda.wang/post/dd3272bb.html)
 * [Spring Security JSON交互 - LD's BLOG](https://longda.wang/post/9bf0270e.html)
+* [Spring Security JWT - LD's BLOG](https://longda.wang/post/7586c240.html)
 
